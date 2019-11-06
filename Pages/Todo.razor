@@ -1,0 +1,24 @@
+@page "/todo"
+@using WebBlazor.Data
+
+<h1>Todo (@todos.Count(todo =>!todo.IsDone))</h1>
+<ul>
+    @foreach (var todo in todos)
+    {
+    <li><input type="checkbox" @bind="todo.IsDone" />
+        <input @bind="todo.Title" />
+    </li>
+    }
+</ul>
+<input class="input" placeholder="Something ToDo" @bind="newTodo" />
+<button @onclick="AddTodo">Add todo</button>
+
+@code {
+private IList<TodoItem> todos = new List<TodoItem>();
+        private string newTodo;
+
+        private void AddTodo(){
+            todos.Add(new TodoItem{Title = newTodo});
+            newTodo = string.Empty;
+        }
+        }

@@ -1,0 +1,64 @@
+﻿@page "/"
+@namespace WebBlazor.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebApplication1</title>
+    <base href="~/" />
+    <!-- <link href="~/css/boostrap/bootstrap.min.css" rel="stylesheet" /> -->
+    <link href="~/css/icon-style.css" rel="stylesheet" />
+    <link href="~/css/bootstrap-3.3.6.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/bootstrap-select.css">
+    <link href="~/css/remodal-default-theme.css" rel="stylesheet">
+    <link href="~/css/remodal.css" rel="stylesheet">
+    <link href="~/css/form.css" rel="stylesheet" />
+    <link href="~/css/main.css" rel="stylesheet" />
+    <link href="~/css/index.css" rel="stylesheet" />
+    <link href="~/css/myStyle.css" rel="stylesheet" />
+    <style>
+        div {
+            word-break: break-all;
+        }
+         [v-cloak] {
+             display: none;
+        }
+    </style>
+</head>
+<body>
+    <app>
+        @(await Html.RenderComponentAsync<App>(RenderMode.ServerPrerendered))
+    </app>
+
+    <script src="~/lib/jquery-1.11.2.min.js"></script>
+    <script src="~/lib/accounting.min.js"></script><!--浮點數運算及數字格式-->
+    <script src="~/lib/moment.js"></script><!-- 時間 -->
+    <script src="~/lib/date-time-setting.js"></script> <!-- 時間數字顯示設定 -->
+    <script src="~/lib/remodal.min.js"></script>
+    <script src="~/lib/popup.js"></script>
+    <script src="~/lib/bootstrap-select.js"></script><!-- 可輸入下拉選單 -->
+    <script src="~/lib/jquery.blockUI.js"></script>
+    <script src="~/lib/JQorgpick.js"></script><!--人員組織樹-->
+    <script src="~/lib/erpTools.js"></script><!--工具傳送門-->
+    <script src="~/lib/underscore-1.9.1.js"></script>
+     <script src="~/lib/vue2.6.10.js"></script>
+    <script src="~/lib/es6-promise.auto.js"></script>
+    <script src="~/lib/vuelidate.min0.7.3.js"></script>
+    <script src="~/lib/validators.min0.7.3.js"></script>
+    <script src="~/lib/vuex3.1.1.js"></script> 
+    <script src="~/js/cbp-blockPage.js"></script>
+    <script src="~/js/cbp-OptionSelect.js"></script>
+    <script src="~/js/index.js"></script>
+    <script src="~/js/back-to-top-index.js"></script>
+    <script src="~/js/ArrayImplement.js"></script>
+    <script src="~/js/component.js"></script><!--自定義元件-->
+    <script src="~/lib/bootstrap-datetimepicker.js"></script>
+    <script src="~/lib/bootstrap-3.3.4.js"></script>
+    <script src="~/js/HelloWorld.js"></script>
+    <script src="_framework/blazor.server.js"></script>
+</body>
+</html>
