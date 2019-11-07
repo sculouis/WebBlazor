@@ -77,6 +77,7 @@
 
     private IList<TodoItem> todoList;
 
+   //頁面起始
     protected override void OnInitialized(){
         Text = Text ?? "fantastic";
         todoList = new List<TodoItem>();
@@ -86,6 +87,7 @@
         todoList.Add(todo2);
     }
 
+    //提供給JS呼叫的Function
     [JSInvokable]
     public static Task<List<TodoItem>> ReturnArrayAsync()
     {
@@ -97,8 +99,10 @@
         return Task.FromResult(todos);
     }
 
+    //頁面Render完畢
     protected override async Task OnAfterRenderAsync(bool firstRender){
         if (firstRender){
+            //呼叫JS的Function
             var text = await JSRuntime.InvokeAsync<string>("obj.Init","測試");
             StateHasChanged();
     }

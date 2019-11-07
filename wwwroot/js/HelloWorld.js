@@ -8,17 +8,15 @@ Bussiness.prototype.Init = function(text){
     });
 }
 Bussiness.prototype.PO = []
+
+//呼叫Web的function
 Bussiness.prototype.CallNet = function(){
-    DotNet.invokeMethodAsync('WebApplication1','ReturnArrayAsync')
+    DotNet.invokeMethodAsync('WebBlazor','ReturnArrayAsync')
     .then(function(data){
         Bussiness.prototype.PO = data
         console.log(Bussiness.prototype.PO)
     })
 }
-Bussiness.prototype.Selected=function(){
-    $("#PRSearchRow").show()
-}
-
 Bussiness.prototype.Selected=function(){
     $("#PRSearchRow").show()
 }
