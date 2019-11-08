@@ -44,7 +44,7 @@ namespace WebBlazor
                     };
                 });
             }
-            services.AddSingleton<DataService>();
+            services.AddSingleton<IDataService>(x => new DataService(new HttpClient()));
             // services.AddHttpClient();
             // services.AddHttpClient(c =>
             // {

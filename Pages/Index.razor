@@ -1,10 +1,9 @@
 ﻿@page "/"
 @using System.Net.Http;
-@using System.Text.Json;
 @using WebBlazor.Data;
 @using WebBlazor.Services
 @inject HttpClient Http;
-@inject DataService dataService;
+@inject IDataService dataService;
 @inject IJSRuntime JSRuntime;
 
 <div class="section-box-area" id="PRDetailSearchBlock">

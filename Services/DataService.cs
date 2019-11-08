@@ -7,12 +7,19 @@ using System;
 
 namespace WebBlazor.Services
 {
-    public class DataService
+interface IDataService
+{
+    public Task<IEnumerable<Address>> GetAddress();
+    public Task<List<SupplierAddress>> GetSupplierAddressAsync();
+}
+
+    public class DataService:IDataService
     {
         // private static readonly IList<SupplierAddress> address; 
-        private HttpClient _client = new HttpClient(); 
+        private HttpClient _client; 
 
-        public DataService(){
+        public DataService(HttpClient client){
+            _client = client;
             _client.Timeout = TimeSpan.FromSeconds(30);
             var baseUri = new Uri("https://louis-chen-webapi.netlify.com/.netlify/functions/server/");
             _client.BaseAddress = baseUri;
