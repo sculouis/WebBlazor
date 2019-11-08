@@ -25,4 +25,12 @@ Bussiness.prototype.SearchResult=function(){
     $("#PRDetailTable").show()
 }
 
+Bussiness.prototype.blockUI=function(text){
+    $.blockUI({message:text})
+}
+Bussiness.prototype.unblockUI=function(){
+    $.unblockUI()
+}
+
+
 var obj = new Bussiness()

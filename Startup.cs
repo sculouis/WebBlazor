@@ -9,7 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WebBlazor.Data;
+using WebBlazor.Services;
+using System.Net.Http;
 
 namespace WebBlazor
 {
@@ -29,6 +30,28 @@ namespace WebBlazor
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+            // Server Side Blazor doesn't register HttpClient by default
+            if (!services.Any(x => x.ServiceType == typeof(HttpClient)))
+            {
+                // Setup HttpClient for server side in a client side compatible fashion
+                services.AddScoped<HttpClient>(s =>
+                {
+                // Creating the URI helper needs to wait until the JS Runtime is initialized, so defer it.
+                var uriHelper = s.GetRequiredService<NavigationManager>();
+                    return new HttpClient
+                    {
+                        BaseAddress = new Uri(uriHelper.BaseUri)
+                    };
+                });
+            }
+            services.AddSingleton<DataService>();
+            // services.AddHttpClient();
+            // services.AddHttpClient(c =>
+            // {
+            //     c.BaseAddress = new Uri("https://louis-chen-webapi.netlify.com/.netlify/functions/server/");
+            //     c.DefaultRequestHeaders.Add("Accept", "json");
+            //     c.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample");
+            // });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

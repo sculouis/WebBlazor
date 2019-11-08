@@ -1,8 +1,9 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using WebBlazor.Data;
 
-namespace WebBlazor.Data
+namespace WebBlazor.Services
 {
     public class WeatherForecastService
     {
