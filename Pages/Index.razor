@@ -6,37 +6,46 @@
 @inject IDataService dataService;
 @inject IJSRuntime JSRuntime;
 
-<div class="section-box-area" id="PRDetailSearchBlock">
-    <div class="box-area-title sub-id-flag" id="InformationSection-01"><b class="sub-title-flag">測試Blazor元件流程</b></div>
-    <div class="box">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="area-btn-right-1">
-                    <a id="SearchPRDetailBtn" class="btn-02-blue btn-left" @onclick="GetTask">
-                        <div class="icon-search bt-icon-size"></div>查詢
-                    </a>
-                </div>
-                <div class="area-btn-right-1">
-                    <a id="SearchPRDetailBtn" class="btn-02-blue btn-left" @onclick="GetAddress">
-                        <div class="icon-search bt-icon-size"></div>取得住址
-                    </a>
-                </div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Enter email">
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <ul>
-                    @if (addressList != null){
-                    foreach (var item in addressList)
-                    {
-                    <li>@item.text</li>
-                    }
-                    }
-                </ul>
+        <div class="col">
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
             </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="exampleInputOther">其他欄位</label>
+                <input type="password" class="form-control" id="exampleInputOther" placeholder="其他欄位">
+            </div>
+        </div>
+        <div class="col align-self-center">
+            <button type="button" class="btn btn-primary" @onclick="GetTask">查詢</button>
+            <button type="button" class="btn btn-secondary" @onclick="GetAddress">取消</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <ul>
+                @if (addressList != null){
+                foreach (var item in addressList)
+                {
+                <li>@item.text</li>
+                }
+                }
+            </ul>
         </div>
     </div>
 </div>
+
 @code{
 
     private List<Address> addressList;
@@ -70,9 +79,9 @@
                 addressList.Clear();
             }
             //呼叫JS的Function
-            await JSRuntime.InvokeAsync<string>("obj.blockUI","測試");
+            //await JSRuntime.InvokeAsync<string>("obj.blockUI","測試"); 
             addressList = (await dataService.GetAddress()).ToList<Address>();    
-            await JSRuntime.InvokeAsync<string>("obj.unblockUI");            
+            //await JSRuntime.InvokeAsync<string>("obj.unblockUI");            
         }
         catch(Exception e){
             Console.WriteLine(e.Message);
